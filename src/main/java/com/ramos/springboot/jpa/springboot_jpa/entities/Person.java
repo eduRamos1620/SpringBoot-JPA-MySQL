@@ -53,16 +53,16 @@ public class Person {
         this.lastname = lastname;
     }
 
-    public String getProgrsmminglenguage(){
+    public String getProgrammingLanguage(){
         return programmingLanguage;
     }
-    public void setProgrsmminglenguage(String programmingLanguage){
+    public void setProgrammingLanguage(String programmingLanguage){
         this.programmingLanguage = programmingLanguage;
     }
 
     @Override
     public String toString(){
         return "[id = " + id + ", name = " + name + ", lastname = " + lastname + ", programminLanguage = "
-        + "]";
+        + programmingLanguage + "]";
     }
 }
