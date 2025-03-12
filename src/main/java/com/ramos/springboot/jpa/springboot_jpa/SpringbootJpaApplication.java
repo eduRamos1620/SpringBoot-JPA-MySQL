@@ -25,7 +25,7 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		update();
+		delete2();
 	}
 
 	@Transactional
@@ -60,6 +60,34 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 			person.setProgrammingLanguage(programmingLanguage);
 			repository.save(person);
 		});
+		sc.close();
+	}
+
+	@Transactional
+	public void delete(){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Ingrese el id ");
+		Long id = sc.nextLong();
+
+		repository.deleteById(id);
+
+		repository.findAll().forEach(p -> System.out.println(p));
+		sc.close();
+	}
+
+	@Transactional
+	public void delete2(){
+		repository.findAll().forEach(System.out::println);
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Ingrese el id ");
+		Long id = sc.nextLong();
+
+		Optional<Person> optionalPerson = repository.findById(id);
+		optionalPerson.ifPresentOrElse(person -> repository.delete(person), 
+		() -> System.out.println("Id no registrado"));
+
+		repository.findAll().forEach(p -> System.out.println(p));
 		sc.close();
 	}
 
